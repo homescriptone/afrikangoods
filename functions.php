@@ -32,10 +32,20 @@ add_action( 'wp_enqueue_scripts', 'afrikangoods_enqueue_styles' );
 
 require_once get_stylesheet_directory() . '/includes/required-plugins.php';
 require_once get_stylesheet_directory() . '/includes/class-github-updater.php';
+require_once get_stylesheet_directory() . '/includes/class-requetes.php';
 
 add_action( 'after_setup_theme', function () {
 	$updater = new Afrikangoods_GitHub_Updater();
 	$updater->init();
+} );
+
+add_action( 'init', function () {
+	$requetes = new Afrikangoods_Requetes();
+	$requetes->init();
+} );
+
+add_action( 'after_switch_theme', function () {
+	flush_rewrite_rules();
 } );
 
 function afrikangoods_register_menus() {

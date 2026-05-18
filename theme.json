@@ -5,42 +5,42 @@
 		"color": {
 			"palette": [
 				{
-					"color": "#faf8f5",
+					"color": "#f7fbf7",
 					"name": "Base",
 					"slug": "base"
 				},
 				{
-					"color": "#1a1a2e",
+					"color": "#2d4032",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#8b4513",
+					"color": "#8fc98e",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#d4a373",
+					"color": "#b5dcb3",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#e9c46a",
+					"color": "#d4edd2",
 					"name": "Tertiary",
 					"slug": "tertiary"
 				},
 				{
-					"color": "#2a9d8f",
+					"color": "#6abf69",
 					"name": "Accent",
 					"slug": "accent"
 				},
 				{
-					"color": "#e76f51",
+					"color": "#5daa5d",
 					"name": "Warm",
 					"slug": "warm"
 				},
 				{
-					"color": "#264653",
+					"color": "#1e3a22",
 					"name": "Deep",
 					"slug": "deep"
 				}
