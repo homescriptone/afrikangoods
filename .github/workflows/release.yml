@@ -1,0 +1,43 @@
+name: Build Theme Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build theme zip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate zip
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+          type: zip
+          filename: afrikangoods.zip
+          exclusions: >-
+            *.git*
+            *.github*
+            *.distignore
+            *node_modules*
+            *package-lock.json
+            *package.json
+            *composer.json
+            *composer.lock
+            *.phpcs.xml.dist
+            *phpcs.xml
+            *.editorconfig
+            *.DS_Store
+            *Thumbs.db
+            *.md
+
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" afrikangoods.zip --repo "${{ github.repository }}"

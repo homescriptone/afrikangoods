@@ -1,0 +1,15 @@
+/.git
+/.github
+/.gitignore
+/.distignore
+/node_modules
+/package-lock.json
+/package.json
+/composer.json
+/composer.lock
+/.phpcs.xml.dist
+/phpcs.xml
+/.editorconfig
+/.DS_Store
+Thumbs.db
+*.md
