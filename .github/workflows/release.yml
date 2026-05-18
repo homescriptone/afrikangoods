@@ -15,6 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Inject version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "Version: $VERSION"
+          sed -i "s/Version: .*/Version: $VERSION/" style.css
+          sed -i "s/define( 'AFRIKANGOODS_THEME_VERSION', '.*' )/define( 'AFRIKANGOODS_THEME_VERSION', '$VERSION' )/" functions.php
+
       - name: Generate zip
         uses: thedoctor0/zip-release@0.7.5
         with:
