@@ -1,25 +1,32 @@
 name: Build Theme Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [master]
 
 permissions:
   contents: write
 
 jobs:
   build:
-    if: github.event.release.target_commitish == 'master'
     name: Build theme zip
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Inject version from tag
+      - name: Determine version
+        id: version
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          echo "Version: $VERSION"
+          COUNT=$(git rev-list --count HEAD)
+          echo "VERSION=1.0.$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Inject version from commit
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          echo "Building version: $VERSION"
           sed -i "s/Version: .*/Version: $VERSION/" style.css
           sed -i "s/define( 'AFRIKANGOODS_THEME_VERSION', '.*' )/define( 'AFRIKANGOODS_THEME_VERSION', '$VERSION' )/" functions.php
 
@@ -44,8 +51,19 @@ jobs:
             *Thumbs.db
             *.md
 
-      - name: Upload release asset
+      - name: Create tag and release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload "${{ github.event.release.tag_name }}" afrikangoods.zip --repo "${{ github.repository }}"
+          TAG="v${{ steps.version.outputs.VERSION }}"
+          echo "Tag: $TAG"
+
+          git tag "$TAG"
+          git push origin "$TAG"
+
+          gh release create "$TAG" \
+            --repo "${{ github.repository }}" \
+            --title "$TAG" \
+            --generate-notes \
+            --target "${{ github.sha }}" \
+            afrikangoods.zip

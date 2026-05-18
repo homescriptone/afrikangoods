@@ -34,7 +34,7 @@ class Afrikangoods_GitHub_Updater {
 		$download_url = '';
 		if ( ! empty( $release['assets'] ) ) {
 			foreach ( $release['assets'] as $asset ) {
-				if ( str_ends_with( $asset['name'], '.zip' ) ) {
+				if ( substr( $asset['name'], -4 ) === '.zip' ) {
 					$download_url = $asset['browser_download_url'];
 					break;
 				}
