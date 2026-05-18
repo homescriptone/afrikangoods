@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   build:
+    if: github.event.release.target_commitish == 'master'
     name: Build theme zip
     runs-on: ubuntu-latest
     steps:
