@@ -15,49 +15,6 @@ Text Domain: afrikangoods
 Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 */
 
-.afrikangoods-carousel {
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-}
-
-.afrikangoods-carousel .carousel-track {
-	display: flex;
-	overflow-x: auto;
-	scroll-behavior: smooth;
-	-webkit-overflow-scrolling: touch;
-	scroll-snap-type: x mandatory;
-	gap: 1rem;
-	padding-bottom: 1rem;
-}
-
-.afrikangoods-carousel .carousel-track::-webkit-scrollbar {
-	height: 6px;
-}
-
-.afrikangoods-carousel .carousel-track::-webkit-scrollbar-thumb {
-	background: var(--wp--preset--color--tertiary, #c6c6c6);
-	border-radius: 3px;
-}
-
-.afrikangoods-carousel .carousel-slide {
-	flex: 0 0 100%;
-	scroll-snap-align: start;
-	min-width: 0;
-}
-
-@media (min-width: 768px) {
-	.afrikangoods-carousel .carousel-slide {
-		flex: 0 0 50%;
-	}
-}
-
-@media (min-width: 1024px) {
-	.afrikangoods-carousel .carousel-slide {
-		flex: 0 0 33.333%;
-	}
-}
-
 .afrikangoods-sidebar .wp-block-group {
 	margin-bottom: var(--wp--preset--spacing--50);
 }
@@ -83,4 +40,144 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 
 .wp-block-post-template .product {
 	list-style: none;
+}
+
+/* ── Button readability ── */
+.wp-block-button__link.has-base-color {
+	color: #faf8f5;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link.has-primary-color {
+	color: #8b4513;
+	border-color: #8b4513;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link.has-primary-color:hover {
+	background-color: #8b4513;
+	color: #faf8f5;
+}
+
+/* ── Category Cards ── */
+.afrikangoods-category-cards.wc-block-product-categories {
+	list-style: none;
+	padding: 0;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	list-style: none;
+	padding: 0;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item {
+	margin: 0;
+	list-style: none;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 2rem 1.5rem;
+	border-radius: 12px;
+	background: var(--wp--preset--color--base, #faf8f5);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	color: var(--wp--preset--color--contrast, #1a1a2e);
+	font-size: var(--wp--preset--font-size--medium, 1.125rem);
+	font-weight: 600;
+	gap: 0.75rem;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item a:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item-count {
+	display: none;
+}
+
+.afrikangoods-category-cards .wc-block-product-categories-list-item > a::after {
+	content: attr(data-description);
+	display: block;
+	font-size: var(--wp--preset--font-size--small, 0.938rem);
+	font-weight: 400;
+	opacity: 0.7;
+	margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+	.afrikangoods-category-cards .wc-block-product-categories-list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.afrikangoods-category-cards .wc-block-product-categories-list {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ── Product Cards ── */
+.afrikangoods-product-card {
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	overflow: hidden;
+}
+
+.afrikangoods-product-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.afrikangoods-product-card .wp-block-post-title {
+	font-size: var(--wp--preset--font-size--small, 0.938rem);
+}
+
+.afrikangoods-product-card .wp-block-post-title a {
+	text-decoration: none;
+}
+
+.afrikangoods-product-card .wp-block-post-title a:hover {
+	text-decoration: underline;
+}
+
+.afrikangoods-product-card .wp-block-button .wp-block-button__link {
+	font-size: var(--wp--preset--font-size--x-small, 0.781rem);
+	padding: calc(0.5em + 2px) calc(1rem + 2px);
+}
+
+/* ── Event Thumbnail Fallback ── */
+.afrikangoods-event-thumb img[src=""] {
+	display: none;
+}
+
+.afrikangoods-event-thumb:has(img[src=""]) {
+	background: var(--wp--preset--color--deep, #264653);
+	min-height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+}
+
+.afrikangoods-event-thumb:has(img[src=""])::before {
+	content: "";
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: url('https://media.tiyalo.com/logo.png') center/contain no-repeat;
+	opacity: 0.6;
 }

@@ -12,42 +12,43 @@ declare( strict_types = 1 );
 	<div class="wp-block-group">
 		<!-- wp:columns {"align":"wide"} -->
 		<div class="wp-block-columns alignwide">
-			<!-- wp:column -->
-			<div class="wp-block-column">
+			<!-- wp:column {"width":"40%"} -->
+			<div class="wp-block-column" style="flex-basis:40%">
 				<!-- wp:heading {"level":2,"style":{"typography":{"textTransform":"uppercase"}}} -->
-				<h2 class="wp-block-heading" style="text-transform:uppercase"><?php echo esc_html__( 'Get in Touch', 'afrikangoods' ); ?></h2>
+				<h2 class="wp-block-heading" style="text-transform:uppercase"><?php echo esc_html__( 'Prêt à Travailler Avec Nous ?', 'afrikangoods' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html__( 'Have questions about our products or want to partner with us? We\'d love to hear from you.', 'afrikangoods' ); ?></p>
+				<p><?php echo esc_html__( 'Que vous soyez un importateur, un distributeur ou une entreprise cherchant à sourcer des produits africains de qualité, nous sommes là pour vous accompagner.', 'afrikangoods' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:list -->
 				<ul class="wp-block-list">
-					<li><?php echo esc_html__( '📍 Based in Africa, shipping worldwide', 'afrikangoods' ); ?></li>
+					<li><?php echo esc_html__( '📍 Basé en Afrique, livraison dans le monde entier', 'afrikangoods' ); ?></li>
 					<li><?php echo esc_html__( '📧 hello@afrikangoods.com', 'afrikangoods' ); ?></li>
 					<li><?php echo esc_html__( '📞 +234 800 AFRICAN', 'afrikangoods' ); ?></li>
+					<li><?php echo esc_html__( '⏱ Devis sous 48h', 'afrikangoods' ); ?></li>
 				</ul>
 				<!-- /wp:list -->
 			</div>
 			<!-- /wp:column -->
 
-			<!-- wp:column -->
+			<!-- wp:column {"width":"60%"} -->
 			<div class="wp-block-column afrikangoods-contact-panel">
 				<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"}}} -->
-				<h3 class="wp-block-heading" style="text-transform:uppercase"><?php echo esc_html__( 'Send Us a Message', 'afrikangoods' ); ?></h3>
+				<h3 class="wp-block-heading" style="text-transform:uppercase"><?php echo esc_html__( 'Demander un Devis', 'afrikangoods' ); ?></h3>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html__( 'Use the contact form below and we\'ll get back to you within 24 hours.', 'afrikangoods' ); ?></p>
+				<p><?php echo esc_html__( 'Remplissez le formulaire ci-dessous. Notre équipe commerciale vous répondra sous 24 à 48 heures.', 'afrikangoods' ); ?></p>
 				<!-- /wp:paragraph -->
 
-				<!-- wp:jetpack/contact-form {"subject":"New message from Afrikangoods","to":"","className":"afrikangoods-contact-form"} -->
+				<!-- wp:jetpack/contact-form {"subject":"Nouvelle demande de devis - Afrikangoods","to":"","className":"afrikangoods-contact-form"} -->
 				<div class="wp-block-jetpack-contact-form afrikangoods-contact-form">
-					<!-- wp:jetpack/field-name {"required":true} /-->
-					<!-- wp:jetpack/field-email {"required":true} /-->
-					<!-- wp:jetpack/field-textarea /-->
-					<!-- wp:jetpack/button {"element":"button","text":"Send Message"} /-->
+					<!-- wp:jetpack/field-name {"required":true,"label":"Nom de l'entreprise"} /-->
+					<!-- wp:jetpack/field-email {"required":true,"label":"Email professionnel"} /-->
+					<!-- wp:jetpack/field-textarea {"required":true,"label":"Votre message (produits recherchés, quantités, destination)"} /-->
+					<!-- wp:jetpack/button {"element":"button","text":"Demander un Devis"} /-->
 				</div>
 				<!-- /wp:jetpack/contact-form -->
 			</div>

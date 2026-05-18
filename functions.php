@@ -38,6 +38,40 @@ add_action( 'after_setup_theme', function () {
 	$updater->init();
 } );
 
+function afrikangoods_register_menus() {
+	register_nav_menus( array(
+		'primary' => __( 'Navigation principale', 'afrikangoods' ),
+	) );
+}
+add_action( 'after_setup_theme', 'afrikangoods_register_menus' );
+
+function afrikangoods_limit_categories_block( $content ) {
+	if ( ! preg_match_all( '/<li[^>]*class="[^"]*wc-block-product-categories-list-item[^"]*"[^>]*>.*?<\/li>/s', $content, $items ) ) {
+		return $content;
+	}
+	if ( count( $items[0] ) <= 6 ) {
+		return $content;
+	}
+	$extra = array_slice( $items[0], 6 );
+	return str_replace( $extra, '', $content );
+}
+
+function afrikangoods_limit_categories_render( $block_content, $block ) {
+	if ( $block['blockName'] === 'woocommerce/product-categories' ) {
+		return afrikangoods_limit_categories_block( $block_content );
+	}
+	return $block_content;
+}
+add_filter( 'render_block', 'afrikangoods_limit_categories_render', 10, 2 );
+
+function afrikangoods_event_fallback_image( $html, $post_id, $post_thumbnail_id ) {
+	if ( empty( $html ) && has_term( 'events', 'category', $post_id ) ) {
+		return '<img src="https://media.tiyalo.com/logo.png" class="wp-post-image" alt="' . esc_attr__( 'Événement', 'afrikangoods' ) . '" style="object-fit:contain;padding:2rem;background:var(--wp--preset--color--deep,#264653)"/>';
+	}
+	return $html;
+}
+add_filter( 'post_thumbnail_html', 'afrikangoods_event_fallback_image', 10, 3 );
+
 function afrikangoods_register_block_pattern_categories() {
 	register_block_pattern_category(
 		'afrikangoods',
