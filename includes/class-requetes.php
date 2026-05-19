@@ -4,18 +4,21 @@ class Afrikangoods_Requetes {
 
 	public function init() {
 		$this->register_post_type();
-		$this->add_myaccount_endpoint();
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post_requete', array( $this, 'save_requete' ) );
 		add_filter( 'manage_requete_posts_columns', array( $this, 'admin_columns' ) );
 		add_action( 'manage_requete_posts_custom_column', array( $this, 'admin_columns_content' ), 10, 2 );
 		add_filter( 'manage_edit-requete_sortable_columns', array( $this, 'sortable_columns' ) );
-		add_filter( 'woocommerce_account_menu_items', array( $this, 'myaccount_menu_item' ), 40 );
-		add_action( 'woocommerce_account_requetes_endpoint', array( $this, 'myaccount_content' ) );
-		add_action( 'template_redirect', array( $this, 'handle_forms' ) );
 		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 10, 2 );
 		add_action( 'admin_post_afrikangoods_delete_requete', array( $this, 'handle_delete' ) );
+
+		if ( class_exists( 'WooCommerce' ) ) {
+			$this->add_myaccount_endpoint();
+			add_filter( 'woocommerce_account_menu_items', array( $this, 'myaccount_menu_item' ), 40 );
+			add_action( 'woocommerce_account_requetes_endpoint', array( $this, 'myaccount_content' ) );
+			add_action( 'template_redirect', array( $this, 'handle_forms' ) );
+		}
 	}
 
 	private function register_post_type() {
@@ -38,17 +41,8 @@ class Afrikangoods_Requetes {
 			'show_in_menu' => true,
 			'menu_icon'    => 'dashicons-email-alt',
 			'menu_position' => 56,
-			'capabilities' => array(
-				'edit_post'          => 'manage_options',
-				'read_post'          => 'manage_options',
-				'delete_post'        => 'manage_options',
-				'edit_posts'         => 'manage_options',
-				'edit_others_posts'  => 'manage_options',
-				'publish_posts'      => 'manage_options',
-				'read_private_posts' => 'manage_options',
-				'delete_posts'       => 'manage_options',
-			),
-			'map_meta_cap' => true,
+			'capability_type' => 'post',
+			'map_meta_cap'   => true,
 			'supports'     => array( 'title', 'author' ),
 			'has_archive'  => false,
 			'rewrite'      => false,

@@ -30,6 +30,17 @@ if ( ! function_exists( 'afrikangoods_enqueue_styles' ) ) {
 }
 add_action( 'wp_enqueue_scripts', 'afrikangoods_enqueue_styles' );
 
+if ( ! function_exists( 'as_next_scheduled_action' ) ) {
+	function as_next_scheduled_action( $hook, $args = array(), $group = '' ) {
+		return false;
+	}
+}
+if ( ! function_exists( 'as_has_scheduled_action' ) ) {
+	function as_has_scheduled_action( $hook, $args = array(), $group = '' ) {
+		return false;
+	}
+}
+
 require_once get_stylesheet_directory() . '/includes/required-plugins.php';
 require_once get_stylesheet_directory() . '/includes/class-github-updater.php';
 require_once get_stylesheet_directory() . '/includes/class-requetes.php';
