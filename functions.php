@@ -74,6 +74,19 @@ function afrikangoods_register_menus() {
 }
 add_action( 'after_setup_theme', 'afrikangoods_register_menus' );
 
+function afrikangoods_force_template_files( $posts, $query ) {
+	if ( ! is_array( $posts ) ) {
+		return $posts;
+	}
+	foreach ( $posts as $key => $post ) {
+		if ( isset( $post->theme ) && $post->theme !== 'afrikangoods' ) {
+			unset( $posts[ $key ] );
+		}
+	}
+	return array_values( $posts );
+}
+add_filter( 'get_block_templates', 'afrikangoods_force_template_files', 99, 2 );
+
 function afrikangoods_limit_categories_block( $content ) {
 	if ( ! preg_match_all( '/<li[^>]*class="[^"]*wc-block-product-categories-list-item[^"]*"[^>]*>.*?<\/li>/s', $content, $items ) ) {
 		return $content;
