@@ -5,46 +5,92 @@
 		"color": {
 			"palette": [
 				{
-					"color": "#f7fbf7",
+					"color": "#fdf8f3",
 					"name": "Base",
 					"slug": "base"
 				},
 				{
-					"color": "#2d4032",
+					"color": "#3e2a1d",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#8fc98e",
+					"color": "#c9734f",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#b5dcb3",
+					"color": "#e8b99a",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#d4edd2",
+					"color": "#f0e3d4",
 					"name": "Tertiary",
 					"slug": "tertiary"
 				},
 				{
-					"color": "#6abf69",
+					"color": "#d4a373",
 					"name": "Accent",
 					"slug": "accent"
 				},
 				{
-					"color": "#5daa5d",
+					"color": "#b5623e",
 					"name": "Warm",
 					"slug": "warm"
 				},
 				{
-					"color": "#1e3a22",
+					"color": "#2c1810",
 					"name": "Deep",
 					"slug": "deep"
+				},
+				{
+					"color": "#7d9b3e",
+					"name": "Field",
+					"slug": "field"
+				},
+				{
+					"color": "#c9a25b",
+					"name": "Harvest",
+					"slug": "harvest"
 				}
 			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Playfair Display\", serif",
+					"name": "Heading",
+					"slug": "heading"
+				},
+				{
+					"fontFamily": "\"Inter\", sans-serif",
+					"name": "Body",
+					"slug": "body"
+				}
+			]
+		}
+	},
+	"styles": {
+		"spacing": {
+			"blockGap": "0"
+		},
+		"blocks": {
+			"core/heading": {
+				"fontFamily": "var(--wp--preset--font-family--heading)"
+			},
+			"core/post-title": {
+				"fontFamily": "var(--wp--preset--font-family--heading)"
+			},
+			"core/site-title": {
+				"fontFamily": "var(--wp--preset--font-family--heading)"
+			},
+			"core/navigation": {
+				"fontFamily": "var(--wp--preset--font-family--body)"
+			},
+			"core/button": {
+				"fontFamily": "var(--wp--preset--font-family--body)"
+			}
 		}
 	},
 	"templateParts": [

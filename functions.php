@@ -1,6 +1,6 @@
 <?php
 
-define( 'AFRIKANGOODS_THEME_VERSION', '1.0.0' );
+define( 'AFRIKANGOODS_THEME_VERSION', '2.0.0' );
 
 if ( ! function_exists( 'afrikangoods_setup' ) ) {
 	function afrikangoods_setup() {
@@ -30,6 +30,18 @@ if ( ! function_exists( 'afrikangoods_enqueue_styles' ) ) {
 }
 add_action( 'wp_enqueue_scripts', 'afrikangoods_enqueue_styles' );
 
+if ( ! function_exists( 'afrikangoods_enqueue_fonts' ) ) {
+	function afrikangoods_enqueue_fonts() {
+		wp_enqueue_style(
+			'afrikangoods-fonts',
+			'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap',
+			array(),
+			AFRIKANGOODS_THEME_VERSION
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'afrikangoods_enqueue_fonts' );
+
 if ( ! function_exists( 'as_next_scheduled_action' ) ) {
 	function as_next_scheduled_action( $hook, $args = array(), $group = '' ) {
 		return false;
@@ -54,10 +66,6 @@ add_action( 'init', function () {
 	$requetes = new Afrikangoods_Requetes();
 	$requetes->init();
 } );
-
-// add_action( 'after_switch_theme', function () {
-// 	flush_rewrite_rules();
-// } );
 
 function afrikangoods_register_menus() {
 	register_nav_menus( array(
@@ -124,3 +132,83 @@ function afrikangoods_scf_json() {
 	}
 }
 add_action( 'acf/init', 'afrikangoods_scf_json' );
+
+// ── Cloudflare Turnstile for Ninja Forms ──
+function afrikangoods_enqueue_turnstile() {
+	$site_key = defined( 'AFRIKANGOODS_TURNSTILE_SITE_KEY' ) ? AFRIKANGOODS_TURNSTILE_SITE_KEY : '';
+
+	if ( empty( $site_key ) ) {
+		$site_key = get_option( 'afrikangoods_turnstile_site_key', '' );
+	}
+
+	if ( empty( $site_key ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'cloudflare-turnstile',
+		'https://challenges.cloudflare.com/turnstile/v0/api.js',
+		array(),
+		null,
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', 'afrikangoods_enqueue_turnstile' );
+
+function afrikangoods_ninja_forms_turnstile_field( $form_id ) {
+	$site_key = defined( 'AFRIKANGOODS_TURNSTILE_SITE_KEY' ) ? AFRIKANGOODS_TURNSTILE_SITE_KEY : '';
+	if ( empty( $site_key ) ) {
+		$site_key = get_option( 'afrikangoods_turnstile_site_key', '' );
+	}
+	if ( empty( $site_key ) ) {
+		return;
+	}
+	?>
+	<div class="afrikangoods-turnstile-wrapper">
+		<div class="cf-turnstile" data-sitekey="<?php echo esc_attr( $site_key ); ?>" data-theme="light"></div>
+	</div>
+	<?php
+}
+add_action( 'ninja_forms_display_before_form', 'afrikangoods_ninja_forms_turnstile_field' );
+
+function afrikangoods_turnstile_verify( $form_data ) {
+	$secret_key = defined( 'AFRIKANGOODS_TURNSTILE_SECRET_KEY' ) ? AFRIKANGOODS_TURNSTILE_SECRET_KEY : '';
+	if ( empty( $secret_key ) ) {
+		$secret_key = get_option( 'afrikangoods_turnstile_secret_key', '' );
+	}
+	if ( empty( $secret_key ) ) {
+		return $form_data;
+	}
+
+	$token = isset( $_POST['cf-turnstile-response'] ) ? sanitize_text_field( wp_unslash( $_POST['cf-turnstile-response'] ) ) : '';
+
+	if ( empty( $token ) ) {
+		$form_data['errors']['form'][] = __( 'Veuillez compléter la vérification de sécurité.', 'afrikangoods' );
+		return $form_data;
+	}
+
+	$response = wp_remote_post( 'https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
+		'body' => array(
+			'secret'   => $secret_key,
+			'response' => $token,
+		),
+		'timeout' => 10,
+	) );
+
+	if ( is_wp_error( $response ) ) {
+		$form_data['errors']['form'][] = __( 'Erreur de vérification. Veuillez réessayer.', 'afrikangoods' );
+		return $form_data;
+	}
+
+	$body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+	if ( empty( $body['success'] ) ) {
+		$form_data['errors']['form'][] = __( 'La vérification de sécurité a échoué. Veuillez réessayer.', 'afrikangoods' );
+	}
+
+	return $form_data;
+}
+add_filter( 'ninja_forms_submit_data', 'afrikangoods_turnstile_verify' );

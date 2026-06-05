@@ -7,7 +7,7 @@ Description: A child theme for kiosko - African raw products e-commerce with Woo
 Requires at least: 6.9
 Tested up to: 7.0-RC4
 Requires PHP: 5.7
-Version: 1.0.0
+Version: 2.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Template: kiosko
@@ -15,61 +15,124 @@ Text Domain: afrikangoods
 Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 */
 
-.wp-block-post-template .product {
-	list-style: none;
+/* ── Base ── */
+body {
+	font-family: "Inter", sans-serif;
+	color: #3e2a1d;
 }
 
-/* ── Button readability ── */
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Playfair Display", serif;
+}
+
+/* ── Buttons ── */
+.wp-block-button__link {
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	transition: all 0.3s ease;
+	border-radius: 8px;
+}
+
 .wp-block-button__link.has-base-color {
-	color: #f7fbf7;
+	color: #fdf8f3;
 }
 
 .wp-block-button.is-style-outline .wp-block-button__link.has-primary-color {
-	color: #8fc98e;
-	border-color: #8fc98e;
+	color: #c9734f;
+	border-color: #c9734f;
 }
 
 .wp-block-button.is-style-outline .wp-block-button__link.has-primary-color:hover {
-	background-color: #8fc98e;
-	color: #f7fbf7;
+	background-color: #c9734f;
+	color: #fdf8f3;
 }
 
-/* ── Pagination as buttons ── */
+.wp-block-button.is-style-outline .wp-block-button__link.has-base-color {
+	color: #fdf8f3;
+	border-color: #fdf8f3;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link.has-base-color:hover {
+	background-color: #fdf8f3;
+	color: #3e2a1d;
+}
+
+.wp-block-button .wp-block-button__link.has-field-background-color {
+	background-color: #7d9b3e;
+}
+
+.wp-block-button .wp-block-button__link.has-field-background-color:hover {
+	background-color: #6a8534;
+}
+
+.wp-block-button .wp-block-button__link.has-harvest-background-color {
+	background-color: #c9a25b;
+	color: #2c1810;
+}
+
+/* ── Hero ── */
+.afrikangoods-hero .wp-block-cover__image-background {
+	filter: saturate(1.1);
+}
+
+/* ── Pagination ── */
 .wp-block-query-pagination a {
 	display: inline-block;
 	padding: 0.5rem 1rem;
-	border: 1px solid var(--wp--preset--color--primary, #8fc98e);
-	border-radius: 6px;
-	color: var(--wp--preset--color--primary, #8fc98e);
+	border: 1px solid var(--wp--preset--color--primary, #c9734f);
+	border-radius: 8px;
+	color: var(--wp--preset--color--primary, #c9734f);
 	text-decoration: none;
 	font-size: var(--wp--preset--font-size--small, 0.938rem);
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
 	transition: all 0.2s;
 }
 
 .wp-block-query-pagination a:hover {
-	background: var(--wp--preset--color--primary, #8fc98e);
-	color: #f7fbf7;
+	background: var(--wp--preset--color--primary, #c9734f);
+	color: #fdf8f3;
 }
 
 .wp-block-query-pagination .page-numbers.current {
 	display: inline-block;
 	padding: 0.5rem 1rem;
-	border: 1px solid var(--wp--preset--color--primary, #8fc98e);
-	border-radius: 6px;
-	background: var(--wp--preset--color--primary, #8fc98e);
-	color: #f7fbf7;
+	border: 1px solid var(--wp--preset--color--primary, #c9734f);
+	border-radius: 8px;
+	background: var(--wp--preset--color--primary, #c9734f);
+	color: #fdf8f3;
 	font-size: var(--wp--preset--font-size--small, 0.938rem);
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
 }
 
-/* ── Menu background ── */
+/* ── Navigation / Header ── */
 .afrikangoods-nav-wrapper {
 	background: #ffffff;
-	border-radius: 8px;
+	border-radius: 12px;
 	padding: 0.25rem 0.5rem;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 2px 12px rgba(62, 42, 29, 0.08);
 }
 
-/* ── Footer readability ── */
+.wp-block-navigation .wp-block-navigation-item__content {
+	font-weight: 500;
+	font-size: 0.938rem;
+	transition: color 0.2s;
+}
+
+.wp-block-navigation .wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--primary, #c9734f) !important;
+}
+
+/* ── Site title ── */
+.wp-block-site-title a {
+	font-family: "Playfair Display", serif;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+/* ── Footer ── */
 .afrikangoods-footer {
 	font-size: var(--wp--preset--font-size--small, 0.938rem);
 	line-height: 1.7;
@@ -82,17 +145,24 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 }
 
 .afrikangoods-footer li {
-	margin-bottom: 0.25rem;
+	margin-bottom: 0.35rem;
 }
 
 .afrikangoods-footer a {
-	color: var(--wp--preset--color--tertiary, #d4edd2);
+	color: var(--wp--preset--color--tertiary, #f0e3d4);
 	text-decoration: underline;
 	text-underline-offset: 2px;
+	transition: color 0.2s;
 }
 
 .afrikangoods-footer a:hover {
-	color: #ffffff;
+	color: var(--wp--preset--color--accent, #d4a373);
+}
+
+.afrikangoods-footer h4 {
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }
 
 /* ── Category Cards ── */
@@ -120,20 +190,21 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 	align-items: center;
 	text-align: center;
 	padding: 2rem 1.5rem;
-	border-radius: 12px;
+	border-radius: 16px;
 	background: #ffffff;
-	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 2px 16px rgba(62, 42, 29, 0.06);
 	text-decoration: none;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-	color: var(--wp--preset--color--contrast, #2d4032);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	color: var(--wp--preset--color--contrast, #3e2a1d);
 	font-size: var(--wp--preset--font-size--medium, 1.125rem);
 	font-weight: 600;
+	font-family: "Playfair Display", serif;
 	gap: 0.75rem;
 }
 
 .afrikangoods-category-cards .wc-block-product-categories-list-item a:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+	transform: translateY(-6px);
+	box-shadow: 0 12px 32px rgba(62, 42, 29, 0.12);
 }
 
 .afrikangoods-category-cards .wc-block-product-categories-list-item img {
@@ -141,6 +212,7 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 	height: 80px;
 	object-fit: cover;
 	border-radius: 50%;
+	border: 3px solid var(--wp--preset--color--tertiary, #f0e3d4);
 }
 
 .afrikangoods-category-cards .wc-block-product-categories-list-item-count {
@@ -152,6 +224,7 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 	display: block;
 	font-size: var(--wp--preset--font-size--small, 0.938rem);
 	font-weight: 400;
+	font-family: "Inter", sans-serif;
 	opacity: 0.7;
 	margin-top: 0.25rem;
 }
@@ -170,18 +243,19 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 
 /* ── Product Cards ── */
 .afrikangoods-product-card {
-	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 2px 16px rgba(62, 42, 29, 0.06);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	overflow: hidden;
 }
 
 .afrikangoods-product-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+	transform: translateY(-6px);
+	box-shadow: 0 12px 32px rgba(62, 42, 29, 0.12);
 }
 
 .afrikangoods-product-card .wp-block-post-title {
 	font-size: var(--wp--preset--font-size--small, 0.938rem);
+	font-family: "Playfair Display", serif;
 }
 
 .afrikangoods-product-card .wp-block-post-title a {
@@ -190,11 +264,17 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 
 .afrikangoods-product-card .wp-block-post-title a:hover {
 	text-decoration: underline;
+	color: var(--wp--preset--color--primary, #c9734f);
 }
 
 .afrikangoods-product-card .wp-block-button .wp-block-button__link {
 	font-size: var(--wp--preset--font-size--x-small, 0.781rem);
 	padding: calc(0.5em + 2px) calc(1rem + 2px);
+}
+
+.wp-block-post-template .wp-block-woocommerce-product-price {
+	color: var(--wp--preset--color--warm, #b5623e);
+	font-weight: 600;
 }
 
 /* ── Event Thumbnail Fallback ── */
@@ -203,7 +283,7 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 }
 
 .afrikangoods-event-thumb:has(img[src=""]) {
-	background: var(--wp--preset--color--deep, #1e3a22);
+	background: var(--wp--preset--color--deep, #2c1810);
 	min-height: 200px;
 	display: flex;
 	align-items: center;
@@ -220,25 +300,46 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 	opacity: 0.6;
 }
 
+/* ── Event Cards ── */
+.afrikangoods-event-card {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 2px 12px rgba(62, 42, 29, 0.06);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.afrikangoods-event-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(62, 42, 29, 0.1);
+}
+
 /* ── FAQ Accordion ── */
 .afrikangoods-faq-item {
-	border: 1px solid rgba(0, 0, 0, 0.08);
-	border-radius: 8px;
+	border: 1px solid rgba(62, 42, 29, 0.1);
+	border-radius: 12px;
 	margin-bottom: 0.75rem;
 	padding: 0;
 	overflow: hidden;
 	background: #ffffff;
+	transition: box-shadow 0.2s;
+}
+
+.afrikangoods-faq-item:hover {
+	box-shadow: 0 2px 12px rgba(62, 42, 29, 0.06);
 }
 
 .afrikangoods-faq-item summary {
 	padding: 1.25rem 1.5rem;
 	font-weight: 600;
+	font-family: "Playfair Display", serif;
 	cursor: pointer;
 	list-style: none;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	transition: background 0.2s;
+	color: var(--wp--preset--color--contrast, #3e2a1d);
 }
 
 .afrikangoods-faq-item summary::-webkit-details-marker {
@@ -249,21 +350,31 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 	content: "+";
 	font-size: 1.5rem;
 	line-height: 1;
-	color: var(--wp--preset--color--primary, #8fc98e);
+	font-family: "Inter", sans-serif;
+	color: var(--wp--preset--color--primary, #c9734f);
 	transition: transform 0.2s;
+	font-weight: 300;
 }
 
 .afrikangoods-faq-item[open] summary::after {
-	content: "−";
+	content: "\2212";
 }
 
 .afrikangoods-faq-item[open] summary {
-	background: rgba(0, 0, 0, 0.02);
+	background: rgba(201, 115, 79, 0.04);
 }
 
 .afrikangoods-faq-item > p {
 	padding: 0 1.5rem 1.25rem;
 	margin: 0;
+}
+
+/* ── How It Works Step Numbers ── */
+.afrikangoods-step-number {
+	font-family: "Playfair Display", serif;
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 1;
 }
 
 /* ── Requêtes / My Account ── */
@@ -275,28 +386,35 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 .afrikangoods-requetes-list li {
 	padding: 1rem 1.25rem;
 	margin-bottom: 0.75rem;
-	border: 1px solid rgba(0, 0, 0, 0.08);
-	border-radius: 8px;
+	border: 1px solid rgba(62, 42, 29, 0.1);
+	border-radius: 12px;
 	background: #ffffff;
+	transition: box-shadow 0.2s;
+}
+
+.afrikangoods-requetes-list li:hover {
+	box-shadow: 0 2px 12px rgba(62, 42, 29, 0.06);
 }
 
 .afrikangoods-requetes-list .requete-status {
 	display: inline-block;
 	padding: 0.2rem 0.6rem;
-	border-radius: 4px;
+	border-radius: 6px;
 	font-size: 0.75rem;
 	font-weight: 600;
 	text-transform: uppercase;
+	font-family: "Inter", sans-serif;
+	letter-spacing: 0.03em;
 }
 
 .requete-status-nouveau {
-	background: #e3f2fd;
-	color: #1565c0;
+	background: #fef3e2;
+	color: #a85d3a;
 }
 
 .requete-status-en-cours {
 	background: #fff3e0;
-	color: #e65100;
+	color: #b5623e;
 }
 
 .requete-status-resolu {
@@ -305,7 +423,7 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 }
 
 .afrikangoods-requete-reply {
-	border-top: 1px solid rgba(0, 0, 0, 0.06);
+	border-top: 1px solid rgba(62, 42, 29, 0.08);
 	padding-top: 1rem;
 	margin-top: 1rem;
 }
@@ -313,26 +431,35 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 .afrikangoods-requete-reply textarea {
 	width: 100%;
 	min-height: 80px;
-	border: 1px solid rgba(0, 0, 0, 0.12);
-	border-radius: 6px;
+	border: 1px solid rgba(62, 42, 29, 0.15);
+	border-radius: 8px;
 	padding: 0.75rem;
-	font-family: inherit;
+	font-family: "Inter", sans-serif;
 	font-size: inherit;
 	resize: vertical;
+	transition: border-color 0.2s;
+}
+
+.afrikangoods-requete-reply textarea:focus {
+	border-color: var(--wp--preset--color--primary, #c9734f);
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(201, 115, 79, 0.1);
 }
 
 .afrikangoods-requete-reply input[type="submit"] {
-	background: var(--wp--preset--color--primary, #8fc98e);
-	color: #f7fbf7;
+	background: var(--wp--preset--color--primary, #c9734f);
+	color: #fdf8f3;
 	border: none;
 	padding: 0.6rem 1.5rem;
-	border-radius: 6px;
+	border-radius: 8px;
 	cursor: pointer;
 	font-weight: 600;
+	font-family: "Inter", sans-serif;
+	transition: background 0.2s;
 }
 
 .afrikangoods-requete-reply input[type="submit"]:hover {
-	opacity: 0.9;
+	background: var(--wp--preset--color--warm, #b5623e);
 }
 
 /* ── Requête single view ── */
@@ -343,29 +470,237 @@ Tags: e-commerce, woocommerce, african, block-patterns, full-site-editing
 .afrikangoods-conversation .message {
 	padding: 1rem 1.25rem;
 	margin-bottom: 0.75rem;
-	border-radius: 8px;
-	background: #f7fbf7;
-	border-left: 3px solid var(--wp--preset--color--primary, #8fc98e);
+	border-radius: 12px;
+	background: #fdf8f3;
+	border-left: 3px solid var(--wp--preset--color--primary, #c9734f);
 }
 
 .afrikangoods-conversation .message.admin {
-	background: #f0f7f0;
-	border-left-color: var(--wp--preset--color--accent, #6abf69);
+	background: #faf3e8;
+	border-left-color: var(--wp--preset--color--accent, #d4a373);
 }
 
 .afrikangoods-conversation .message .message-author {
 	font-size: 0.8125rem;
 	font-weight: 600;
-	color: var(--wp--preset--color--contrast, #2d4032);
+	font-family: "Inter", sans-serif;
+	color: var(--wp--preset--color--contrast, #3e2a1d);
 }
 
 .afrikangoods-conversation .message .message-date {
 	font-size: 0.75rem;
-	color: #888;
+	color: #999;
 	margin-left: 0.5rem;
 }
 
 .afrikangoods-conversation .message .message-text {
 	margin-top: 0.5rem;
 	line-height: 1.6;
+}
+
+/* ── Section headings ── */
+.section-heading {
+	font-family: "Playfair Display", serif;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+/* ── Separator styling ── */
+.wp-block-separator {
+	opacity: 0.3;
+}
+
+/* ── Cover overlay improvements ── */
+.wp-block-cover .wp-block-cover__inner-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
+}
+
+/* ── Form styling ── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+	font-family: "Inter", sans-serif;
+	border-radius: 8px;
+	border: 1px solid rgba(62, 42, 29, 0.15);
+	padding: 0.6rem 0.75rem;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: var(--wp--preset--color--primary, #c9734f);
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(201, 115, 79, 0.1);
+}
+
+/* ── Blog cards ── */
+.afrikangoods-blog-card {
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 12px;
+	padding: 1.5rem;
+	transition: background 0.3s;
+}
+
+.afrikangoods-blog-card:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── WooCommerce mini-cart ── */
+.wc-block-mini-cart__button {
+	font-size: 1.1rem;
+}
+
+/* ── Ninja Forms in Contact Panel ── */
+.afrikangoods-contact-form-wrapper .nf-form-cont {
+	margin-top: 1.5rem;
+}
+
+.afrikangoods-contact-form-wrapper .nf-form-content {
+	padding: 0;
+}
+
+.afrikangoods-contact-form-wrapper nf-field {
+	margin-bottom: 1.25rem;
+}
+
+.afrikangoods-contact-form-wrapper .nf-field-label label {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 0.875rem;
+	color: #fdf8f3;
+	margin-bottom: 0.25rem;
+}
+
+.afrikangoods-contact-form-wrapper .nf-field-element input[type="text"],
+.afrikangoods-contact-form-wrapper .nf-field-element input[type="email"],
+.afrikangoods-contact-form-wrapper .nf-field-element input[type="tel"],
+.afrikangoods-contact-form-wrapper .nf-field-element textarea,
+.afrikangoods-contact-form-wrapper .nf-field-element select {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.95);
+	font-family: "Inter", sans-serif;
+	font-size: 0.938rem;
+	color: #3e2a1d;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.afrikangoods-contact-form-wrapper .nf-field-element input:focus,
+.afrikangoods-contact-form-wrapper .nf-field-element textarea:focus,
+.afrikangoods-contact-form-wrapper .nf-field-element select:focus {
+	border-color: #fdf8f3;
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(253, 248, 243, 0.3);
+}
+
+.afrikangoods-contact-form-wrapper .nf-field-element textarea {
+	min-height: 120px;
+	resize: vertical;
+}
+
+.afrikangoods-contact-form-wrapper .submit-wrap .ninja-forms-field,
+.afrikangoods-contact-form-wrapper .nf-form-content input[type="button"],
+.afrikangoods-contact-form-wrapper .nf-form-content input[type="submit"] {
+	background: #fdf8f3;
+	color: #c9734f;
+	border: none;
+	padding: 0.85rem 2rem;
+	border-radius: 8px;
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.2s;
+}
+
+.afrikangoods-contact-form-wrapper .submit-wrap .ninja-forms-field:hover,
+.afrikangoods-contact-form-wrapper .nf-form-content input[type="button"]:hover,
+.afrikangoods-contact-form-wrapper .nf-form-content input[type="submit"]:hover {
+	background: #f0e3d4;
+	transform: translateY(-1px);
+}
+
+.afrikangoods-contact-form-wrapper .nf-response-msg {
+	margin-top: 1rem;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	font-family: "Inter", sans-serif;
+	font-size: 0.875rem;
+}
+
+.afrikangoods-contact-form-wrapper .nf-response-msg p {
+	margin: 0;
+}
+
+/* ── Cloudflare Turnstile ── */
+.afrikangoods-contact-form-wrapper .cf-turnstile,
+.afrikangoods-turnstile-wrapper {
+	margin: 1rem 0;
+}
+
+.afrikangoods-turnstile-info {
+	font-family: "Inter", sans-serif;
+}
+
+/* ── Collapse header/footer spacing ── */
+.wp-site-blocks > header,
+header.wp-block-template-part {
+	margin-block-end: 0 !important;
+	padding-block-end: 0 !important;
+}
+
+.wp-site-blocks > header + *,
+.wp-site-blocks > header + .wp-block-cover,
+.wp-site-blocks > header + .wp-block-group {
+	margin-block-start: 0 !important;
+}
+
+.wp-site-blocks > footer,
+footer.wp-block-template-part {
+	margin-block-start: 0 !important;
+	padding-block-start: 0 !important;
+}
+
+.wp-site-blocks > main {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+main.wp-block-group {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+.wp-block-template-part {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+	.afrikangoods-nav-wrapper {
+		border-radius: 8px;
+	}
+
+	.afrikangoods-contact-form-wrapper {
+		border-radius: 12px;
+		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.wp-block-cover {
+		min-height: 60vh !important;
+	}
 }

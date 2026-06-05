@@ -1,8 +1,8 @@
 == Afrikangoods ==
 
 Contributors: UltiWP
-Requires at least: 6.0
-Tested up to: 6.9
+Requires at least: 6.9
+Tested up to: 7.0-RC4
 Requires PHP: 5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -10,10 +10,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-A child theme for kiosko
+A child theme for kiosko - African raw products e-commerce with WooCommerce
 
 
 == Changelog ==
+
+= 2.0.0 =
+* Full redesign: warm terracotta/earth tones color palette
+* Added Google Fonts (Playfair Display + Inter)
+* Refined all block patterns with new brand aesthetics
+* Improved component styling (FAQ, product cards, category cards, forms)
+* Added blog card and event card styling
+* Enhanced responsiveness and hover effects
 
 = 1.0.0 =
 * Initial release
