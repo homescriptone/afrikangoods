@@ -19,7 +19,7 @@ declare( strict_types = 1 );
 		<!-- /wp:paragraph -->
 
 		<!-- wp:html -->
-		<div class="afrikangoods-category-cards">
+		<div class="wp-block-query alignwide">
 			<?php
 			$categories = get_terms( array(
 				'taxonomy'   => 'product_cat',
@@ -27,20 +27,22 @@ declare( strict_types = 1 );
 				'parent'     => 0,
 			) );
 			if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
-				<ul class="afrikangoods-category-cards-list">
+				<ul class="wp-block-post-template is-layout-grid wp-block-post-template-is-layout-grid" style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:1.5rem;width:100%;list-style:none;margin:0;padding:0;">
 					<?php foreach ( $categories as $cat ) :
 						$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 						$image        = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'medium' ) : wc_placeholder_img_src();
 						$description  = $cat->description;
 						?>
 						<li class="afrikangoods-category-cards-item">
-							<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="afrikangoods-category-card-link">
-								<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="afrikangoods-category-card-image" loading="lazy">
-								<div class="afrikangoods-category-card-body">
-									<h3 class="afrikangoods-category-card-title"><?php echo esc_html( $cat->name ); ?></h3>
-									<?php if ( $description ) : ?>
-										<p class="afrikangoods-category-card-description"><?php echo esc_html( $description ); ?></p>
-									<?php endif; ?>
+							<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="afrikangoods-category-card-link" style="text-decoration:none;display:block;height:100%;">
+								<div class="afrikangoods-category-card" style="border-radius:12px;background-color:#ffffff;overflow:hidden;box-shadow:0 2px 16px rgba(62,42,29,0.06);transition:transform 0.3s ease, box-shadow 0.3s ease;height:100%;">
+									<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="afrikangoods-category-card-image" style="width:100%;object-fit:contain;display:block;" loading="lazy">
+									<div class="afrikangoods-category-card-body" style="padding:var(--wp--preset--spacing--30);text-align:center;">
+										<h3 class="afrikangoods-category-card-title" style="font-family:'Playfair Display',serif;font-size:var(--wp--preset--font-size--medium,1.063rem);font-weight:600;margin:0 0 0.5rem;color:var(--wp--preset--color--contrast,#3e2a1d);"><?php echo esc_html( $cat->name ); ?></h3>
+										<?php if ( $description ) : ?>
+											<p class="afrikangoods-category-card-description" style="font-size:0.875rem;color:var(--wp--preset--color--contrast,#3e2a1d);margin:0;opacity:0.8;line-height:1.5;"><?php echo esc_html( wp_trim_words( $description, 20, '...' ) ); ?></p>
+										<?php endif; ?>
+									</div>
 								</div>
 							</a>
 						</li>
