@@ -18,7 +18,37 @@ declare( strict_types = 1 );
 		<p class="has-text-align-center has-warm-color has-text-color has-small-font-size" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--50)"><?php echo esc_html__( 'Une large gamme de produits bruts africains, triés sur le volet pour les professionnels', 'afrikangoods' ); ?></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:woocommerce/product-categories {"hasCount":false,"hasImage":true,"isHierarchical":false,"showChildrenOnly":false,"align":"wide","className":"afrikangoods-category-cards"} /-->
+		<!-- wp:html -->
+		<div class="afrikangoods-category-cards">
+			<?php
+			$categories = get_terms( array(
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => true,
+				'parent'     => 0,
+			) );
+			if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+				<ul class="afrikangoods-category-cards-list">
+					<?php foreach ( $categories as $cat ) :
+						$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+						$image        = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'medium' ) : wc_placeholder_img_src();
+						$description  = $cat->description;
+						?>
+						<li class="afrikangoods-category-cards-item">
+							<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="afrikangoods-category-card-link">
+								<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="afrikangoods-category-card-image" loading="lazy">
+								<div class="afrikangoods-category-card-body">
+									<h3 class="afrikangoods-category-card-title"><?php echo esc_html( $cat->name ); ?></h3>
+									<?php if ( $description ) : ?>
+										<p class="afrikangoods-category-card-description"><?php echo esc_html( $description ); ?></p>
+									<?php endif; ?>
+								</div>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		</div>
+		<!-- /wp:html -->
 
 		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
 		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--60)">

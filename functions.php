@@ -74,18 +74,34 @@ function afrikangoods_register_menus() {
 }
 add_action( 'after_setup_theme', 'afrikangoods_register_menus' );
 
-function afrikangoods_force_template_files( $posts, $query ) {
-	if ( ! is_array( $posts ) ) {
-		return $posts;
+function afrikangoods_clean_stale_templates() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
 	}
-	foreach ( $posts as $key => $post ) {
-		if ( isset( $post->theme ) && $post->theme !== 'afrikangoods' ) {
-			unset( $posts[ $key ] );
+	$stale = get_posts( array(
+		'post_type'      => 'wp_template',
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'wp_theme',
+				'field'    => 'name',
+				'terms'    => 'kiosko',
+			),
+		),
+		'fields'         => 'ids',
+	) );
+	if ( ! empty( $stale ) ) {
+		foreach ( $stale as $post_id ) {
+			wp_delete_post( $post_id, true );
 		}
 	}
-	return array_values( $posts );
+	if ( function_exists( 'wp_clean_theme_json_cache' ) ) {
+		wp_clean_theme_json_cache();
+	}
+	delete_option( 'wp_template_freshness' );
 }
-add_filter( 'get_block_templates', 'afrikangoods_force_template_files', 99, 2 );
+add_action( 'init', 'afrikangoods_clean_stale_templates' );
 
 function afrikangoods_limit_categories_block( $content ) {
 	if ( ! preg_match_all( '/<li[^>]*class="[^"]*wc-block-product-categories-list-item[^"]*"[^>]*>.*?<\/li>/s', $content, $items ) ) {
