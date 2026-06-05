@@ -1,0 +1,55 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"backgroundColor":"base"} -->
+<div class="wp-block-group alignfull has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)">
+	<!-- wp:group {"style":{"spacing":{"padding":{"left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group" style="padding-left:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40)">
+		<!-- wp:woocommerce/breadcrumbs /-->
+
+		<!-- wp:woocommerce/store-notices /-->
+
+		<!-- wp:columns {"align":"wide"} -->
+		<div class="wp-block-columns alignwide">
+			<!-- wp:column {"width":"50%"} -->
+			<div class="wp-block-column" style="flex-basis:50%">
+				<!-- wp:woocommerce/product-image-gallery /-->
+			</div>
+			<!-- /wp:column -->
+
+			<!-- wp:column -->
+			<div class="wp-block-column">
+				<!-- wp:post-title {"level":1,"__woocommerceNamespace":"woocommerce/product-query/product-title","fontFamily":"heading"} /-->
+
+				<!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
+
+				<!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true,"fontSize":"large","textColor":"primary"} /-->
+
+				<!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
+
+				<!-- wp:woocommerce/add-to-cart-form /-->
+
+				<!-- wp:woocommerce/product-meta -->
+				<div class="wp-block-woocommerce-product-meta">
+					<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"1rem"}}} -->
+					<div class="wp-block-group">
+						<!-- wp:woocommerce/product-sku {"isDescendentOfSingleProductTemplate":true} /-->
+						<!-- wp:post-terms {"term":"product_cat","prefix":"Catégorie : "} /-->
+						<!-- wp:post-terms {"term":"product_tag","prefix":"Étiquettes : "} /-->
+					</div>
+					<!-- /wp:group -->
+				</div>
+				<!-- /wp:woocommerce/product-meta -->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
+
+		<!-- wp:woocommerce/product-details {"align":"wide","className":"is-style-minimal"} /-->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"kiosko/related-products"} /-->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
